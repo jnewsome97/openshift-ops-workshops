@@ -1,7 +1,7 @@
 ## Summary - OpenShift Logging
 In this lab you will explore the logging capabilities of
-OpenShift 4.12. This module will break down all the new logging
-features within 4.12.
+OpenShift 4.14. This module will break down all the new logging
+features within 4.14.
 
 An extremely important function of OpenShift is collecting and aggregating
 logs from the environments and the application pods it is running. 
@@ -11,7 +11,7 @@ The cluster logging components are based upon Vector and Loki. Vector is a high-
 [Note]
 ====
 More information may be found on the official
-link:https://docs.openshift.com/container-platform/4.12/logging/cluster-logging.html[OpenShift
+link:https://docs.openshift.com/container-platform/4.14/logging/cluster-logging.html[OpenShift
 documentation site]
 ====
 
