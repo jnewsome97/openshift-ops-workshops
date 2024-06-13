@@ -63,7 +63,7 @@ sets of OpenShift objects with powerful parameterization. They can be used to
 quickly deploy more complicated and related components into OpenShift, and can be a
 useful part of your organization's software development lifecycle (SDLC). More
 information can be found in the
-link:https://docs.openshift.com/container-platform/4.9/openshift_images/using-templates.html[template documentation^].
+link:https://docs.openshift.com/container-platform/4.14/openshift_images/using-templates.html[template documentation^].
 We will not go into detail on *Templates* in this lab.
 ====
 
@@ -82,7 +82,7 @@ Please take note that there are two new sections added: *ResourceQuota* and
 
 ### Background: ResourceQuota
 The
-link:https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-per-project.html[quota documentation^]
+link:https://docs.openshift.com/container-platform/4.14/applications/quotas/quotas-setting-per-project.html[quota documentation^]
 provides a great description of *ResourceQuota*:
 
 ----
@@ -125,12 +125,12 @@ when we get to the *LimitRange* object.
 <6> The total number of persistent volume claims in a project.
 
 For more details on the available quota options, refer back to the
-link:https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-per-project.html[quota
+link:https://docs.openshift.com/container-platform/4.14/applications/quotas/quotas-setting-per-project.html[quota
 documentation^]
 
 ### Background: LimitRange
 The
-link:https://docs.openshift.com/container-platform/4.9/nodes/clusters/nodes-cluster-limit-ranges.html[limit
+link:https://docs.openshift.com/container-platform/4.14/nodes/clusters/nodes-cluster-limit-ranges.html[limit
 range documentation^] provides some good background:
 
 ----
@@ -174,7 +174,7 @@ Take a look at the sample `LimitRange` definition that we have provided in the
 
 The difference between requests and
 default limits is important, and is covered in the
-link:https://docs.openshift.com/container-platform/4.9/nodes/clusters/nodes-cluster-limit-ranges.html[limit
+link:https://docs.openshift.com/container-platform/4.14/nodes/clusters/nodes-cluster-limit-ranges.html[limit
 range documentation^]. But, generally speaking:
 
 <1> `max` is the highest value that may be specified for limits and requests
@@ -186,7 +186,7 @@ nothing is specified
 
 In addition to these topics, there are things like *Quality of Service Tiers*
 as well as a *Limit* to *Request* ratio. There is additionally more information in the
-link:https://docs.openshift.com/container-platform/4.9/nodes/clusters/nodes-cluster-limit-ranges.html[limit
+link:https://docs.openshift.com/container-platform/4.14/nodes/clusters/nodes-cluster-limit-ranges.html[limit
 range documentation^] section of the documentation.
 
 For the sake of brevity, suffice it to say that there is a complex and powerful
@@ -222,7 +222,7 @@ Remember that quotas and limits are applied at the *Project* level. *Users*
 may have access to multiple *Projects*, but quotas and limits do not apply
 directly to *Users*. If you want to apply one quota across multiple *Projects*,
 then you should look at the
-link:https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-across-multiple-projects.html[multi-project
+link:https://docs.openshift.com/container-platform/4.14/applications/quotas/quotas-setting-across-multiple-projects.html[multi-project
 quota^] documentation. We will not cover multi-project quota in these exercises.
 ====
 
