@@ -71,7 +71,7 @@ image::images/acm-images/screen2.png[]
 
 image::images/acm-images/pull_secret.png[]
 
-* SSH private and public keys:  Use an existing key pair or https://docs.openshift.com/container-platform/4.9/installing/installing_aws/installing-aws-default.html#ssh-agent-using_installing-aws-default[generate a new ssh key]
+* SSH private and public keys:  Use an existing key pair or https://docs.openshift.com/container-platform/4.14/installing/installing_aws/installing-aws-default.html#ssh-agent-using_installing-aws-default[generate a new ssh key]
 
 > Please note you might need *console.redhat.com* access to get these keys
 
