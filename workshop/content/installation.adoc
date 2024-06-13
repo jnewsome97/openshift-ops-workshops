@@ -115,7 +115,7 @@ load balancer.
 
 For more information on the OpenShift Master's areas of responsibility, please refer to
 the
-link:https://docs.openshift.com/container-platform/4.9/architecture/control-plane.html[infrastructure components section] of the product documentation.
+link:https://docs.openshift.com/container-platform/4.14/architecture/control-plane.html[infrastructure components section] of the product documentation.
 
 ### Examining the installation artifacts
 OpenShift 4 installs with two effective superusers:
