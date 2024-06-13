@@ -1,6 +1,6 @@
 ## Taints and Tolerations
 
-In a previous lab, you created "infra" nodes leveraging https://docs.openshift.com/container-platform/latest/nodes/scheduling/nodes-scheduler-node-selectors.html[nodeSelector]
+In a previous lab, you created "infra" nodes leveraging https://docs.openshift.com/container-platform/4.14/nodes/scheduling/nodes-scheduler-node-selectors.html[nodeSelector]
 to control where the workload lands. You saw how you can set nodes to perform
 certain tasks. The `nodeSelector` in  the `nodePlacement` attracts pods to a
 set of nodes. But what if you want the opposite? What if you want to repel
@@ -285,7 +285,7 @@ oc get pods -o=custom-columns=NAME:.metadata.name,NODE:.spec.nodeName
 oc get nodes -l appnode=welcome-php
 ----
 
-To read more about taints and tolerations, you can take a look at the https://docs.openshift.com/container-platform/4.9/nodes/scheduling/nodes-scheduler-taints-tolerations.html[Official Documentation].
+To read more about taints and tolerations, you can take a look at the https://docs.openshift.com/container-platform/4.14/nodes/scheduling/nodes-scheduler-taints-tolerations.html[Official Documentation].
 
 #### Clean Up
 
