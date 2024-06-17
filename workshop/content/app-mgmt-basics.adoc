@@ -718,7 +718,7 @@ OpenShift also allows you to run a command inside the *Pod*/container in order
 to perform the check. That command could be a complicated script that uses any
 language already installed inside the container image.
 
-There are two types of application probes that can be defined:
+There are three types of application probes that can be defined:
 
 *Liveness Probe*
 
@@ -733,6 +733,13 @@ readiness probe fails, the endpoint's controller ensures the container has its I
 address removed from the endpoints of all services that should match it. A
 readiness probe can be used to signal to the endpoint's controller that even
 though a container is running, it should not receive any traffic.
+
+*Startup Probe*
+
+A startup probe indicates whether the application within a container is started. 
+All other probes are disabled until the startup succeeds. If the startup probe 
+does not succeed within a specified time period, the kubelet kills the container, 
+and the container is subject to the pod restartPolicy.
 
 More information on probing applications is available in the
 https://docs.openshift.com/container-platform/4.14/applications/application-health.html[Application
