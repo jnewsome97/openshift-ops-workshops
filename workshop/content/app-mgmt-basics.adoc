@@ -108,40 +108,41 @@ NOTE: The `-l deployment=mapit` selects the pod that is related to the
 And you will see output similar to the following:
 
 ----
-Name:             mapit-595987c59c-vr7l7
-Namespace:        app-management
-Priority:         0
-Service Account:  default
-Node:             ip-10-0-33-207.us-east-2.compute.internal/10.0.33.207
-Start Time:       Mon, 20 May 2024 12:38:14 +0000
-Labels:           deployment=mapit
-                  pod-template-hash=595987c59c
-Annotations:      k8s.ovn.org/pod-networks:
-                    {"default":{"ip_addresses":["10.128.2.26/23"],"mac_address":"0a:58:0a:80:02:1a","gateway_ips":
-["10.128.2.1"],"routes":[{"dest":"10.128.0.0...
-                  k8s.v1.cni.cncf.io/network-status:
-                    [{
-                        "name": "ovn-kubernetes",
-                        "interface": "eth0",
-                        "ips": [
-                            "10.128.2.26"
-                        ],
-                        "mac": "0a:58:0a:80:02:1a",
-                        "default": true,
-                        "dns": {}
-                    }]
-                  openshift.io/generated-by: OpenShiftNewApp
-                  openshift.io/scc: restricted-v2
-                  seccomp.security.alpha.kubernetes.io/pod: runtime/default
-Status:           Running
-SeccompProfile:   RuntimeDefault
-IP:               10.128.2.26
+NAME                    READY   STATUS    RESTARTS   AGE
+mapit-85ddc7b8f-9h65k   1/1     Running   0          102s
+[ec2-user@bastion ~]$ oc describe pod -l deployment=mapit
+Name:         mapit-85ddc7b8f-9h65k
+Namespace:    app-management
+Priority:     0
+Node:         ip-10-0-61-146.us-east-2.compute.internal/10.0.61.146
+Start Time:   Mon, 17 Jun 2024 13:55:56 +0000
+Labels:       deployment=mapit
+              pod-template-hash=85ddc7b8f
+Annotations:  k8s.ovn.org/pod-networks:
+                {"default":{"ip_addresses":["10.128.2.94/23"],"mac_address":"0a:58:0a:80:02:5e","gateway_ips":["10
+.128.2.1"],"routes":[{"dest":"10.128.0.0...
+              k8s.v1.cni.cncf.io/network-status:
+                [{
+                    "name": "ovn-kubernetes",
+                    "interface": "eth0",
+                    "ips": [
+                        "10.128.2.94"
+                    ],
+                    "mac": "0a:58:0a:80:02:5e",
+                    "default": true,
+                    "dns": {}
+                }]
+              openshift.io/generated-by: OpenShiftNewApp
+              openshift.io/scc: restricted-v2
+              seccomp.security.alpha.kubernetes.io/pod: runtime/default
+Status:       Running
+IP:           10.128.2.94
 IPs:
-  IP:           10.128.2.26
-Controlled By:  ReplicaSet/mapit-595987c59c
+  IP:           10.128.2.94
+Controlled By:  ReplicaSet/mapit-85ddc7b8f
 Containers:
   mapit:
-    Container ID:   cri-o://374e17fedd19514d3daf85140601195bee2a63556c22842ab918b9fe10fac8ca
+    Container ID:   cri-o://6e434835bbda7f61a5efd692d44665506c285e328e30f134a60e5df9252b167c
     Image:          quay.io/openshiftroadshow/mapit@sha256:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d8093
 9efd1de9d
     Image ID:       quay.io/openshiftroadshow/mapit@sha256:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d8093
@@ -149,15 +150,12 @@ Containers:
     Ports:          8080/TCP, 8778/TCP, 9779/TCP
     Host Ports:     0/TCP, 0/TCP, 0/TCP
     State:          Running
-      Started:      Mon, 20 May 2024 12:38:23 +0000
+      Started:      Mon, 17 Jun 2024 13:56:14 +0000
     Ready:          True
     Restart Count:  0
-    Liveness:       http-get http://:8080/health delay=30s timeout=1s period=10s #success=1 #failure=3
-    Readiness:      http-get http://:8080/health delay=30s timeout=1s period=10s #success=1 #failure=3
     Environment:    <none>
     Mounts:
-      /app-storage from mapit-storage (rw)
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-l4vhn (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gtlg6 (ro)
 Conditions:
   Type              Status
   Initialized       True
@@ -165,11 +163,7 @@ Conditions:
   ContainersReady   True
   PodScheduled      True
 Volumes:
-  mapit-storage:
-    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
-    ClaimName:  mapit-storage
-    ReadOnly:   false
-  kube-api-access-l4vhn:
+  kube-api-access-gtlg6:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
@@ -182,17 +176,17 @@ Node-Selectors:              <none>
 Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
 Events:
-  Type    Reason                  Age   From                     Message
-  ----    ------                  ----  ----                     -------
-  Normal  Scheduled               37m   default-scheduler        Successfully assigned app-management/mapit-595987
-c59c-vr7l7 to ip-10-0-33-207.us-east-2.compute.internal
-  Normal  SuccessfulAttachVolume  37m   attachdetach-controller  AttachVolume.Attach succeeded for volume "pvc-07f
-ed757-188c-4adc-9c92-37d9964fcfbb"
-  Normal  AddedInterface          37m   multus                   Add eth0 [10.128.2.26/23] from ovn-kubernetes
-  Normal  Pulled                  37m   kubelet                  Container image "quay.io/openshiftroadshow/mapit@
-sha256:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d" already present on machine
-  Normal  Created                 37m   kubelet                  Created container mapit
-  Normal  Started                 37m   kubelet                  Started container mapit
+  Type    Reason          Age   From               Message
+  ----    ------          ----  ----               -------
+  Normal  Scheduled       106s  default-scheduler  Successfully assigned app-management/mapit-85ddc7b8f-9h65k to i
+p-10-0-61-146.us-east-2.compute.internal
+  Normal  AddedInterface  106s  multus             Add eth0 [10.128.2.94/23] from ovn-kubernetes
+  Normal  Pulling         106s  kubelet            Pulling image "quay.io/openshiftroadshow/mapit@sha256:1366b430c
+7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d"
+  Normal  Pulled          90s   kubelet            Successfully pulled image "quay.io/openshiftroadshow/mapit@sha2
+56:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d" in 16.201s (16.201s including waiting)
+  Normal  Created         89s   kubelet            Created container mapit
+  Normal  Started         89s   kubelet            Started container mapit
 ----
 
 This is a more detailed description of the pod that is running. You can see what
@@ -236,8 +230,8 @@ oc get services
 You will see something like the following:
 
 ----
-NAME    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
-mapit   ClusterIP   172.30.167.160   <none>        8080/TCP,8778/TCP,9779/TCP   26
+NAME    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+mapit   ClusterIP   172.30.239.63   <none>        8080/TCP,8778/TCP,9779/TCP   2m35s
 ----
 
 NOTE: Service IP addresses are dynamically assigned on creation and are
@@ -265,17 +259,17 @@ Selector:          deployment=mapit
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                172.30.226.25
-IPs:               172.30.226.25
+IP:                172.30.239.63
+IPs:               172.30.239.63
 Port:              8080-tcp  8080/TCP
 TargetPort:        8080/TCP
-Endpoints:         10.128.2.22:8080
+Endpoints:         10.128.2.94:8080
 Port:              8778-tcp  8778/TCP
 TargetPort:        8778/TCP
-Endpoints:         10.128.2.22:8778
+Endpoints:         10.128.2.94:8778
 Port:              9779-tcp  9779/TCP
 TargetPort:        9779/TCP
-Endpoints:         10.128.2.22:9779
+Endpoints:         10.128.2.94:9779
 Session Affinity:  None
 Events:            <none>
 ----
@@ -299,19 +293,19 @@ kind: Service
 metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: "2024-05-20T12:15:16Z"
+  creationTimestamp: "2024-06-17T13:55:56Z"
   labels:
     app: mapit
     app.kubernetes.io/component: mapit
     app.kubernetes.io/instance: mapit
   name: mapit
   namespace: app-management
-  resourceVersion: "47584"
-  uid: 7d4a9d5b-68c4-46b6-b7cd-1d3d928b6557
+  resourceVersion: "128343"
+  uid: 12f9b20b-2ff9-4924-8d06-2e965b217a95
 spec:
-  clusterIP: 172.30.226.25
+  clusterIP: 172.30.239.63
   clusterIPs:
-  - 172.30.226.25
+  - 172.30.239.63
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
@@ -520,17 +514,17 @@ Selector:          deployment=mapit
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                172.30.226.25
-IPs:               172.30.226.25
+IP:                172.30.239.63
+IPs:               172.30.239.63
 Port:              8080-tcp  8080/TCP
 TargetPort:        8080/TCP
-Endpoints:         10.128.2.22:8080
+Endpoints:         10.128.2.94:8080,10.131.0.99:8080
 Port:              8778-tcp  8778/TCP
 TargetPort:        8778/TCP
-Endpoints:         10.128.2.22:8778
+Endpoints:         10.128.2.94:8778,10.131.0.99:8778
 Port:              9779-tcp  9779/TCP
 TargetPort:        9779/TCP
-Endpoints:         10.128.2.22:9779
+Endpoints:         10.128.2.94:9779,10.131.0.99:9779
 Session Affinity:  None
 Events:            <none>
 ----
@@ -546,7 +540,7 @@ And you will see something like the following:
 
 ----
 NAME    ENDPOINTS                                                        AGE
-mapit   10.128.2.19:8080,10.129.2.99:8080,10.128.2.19:9779 + 3 more...   81m
+mapit   10.128.2.94:8080,10.131.0.99:8080,10.128.2.94:9779 + 3 more...   4m32s
 ----
 
 Your IP addresses will likely be different, as each pod receives a unique IP
