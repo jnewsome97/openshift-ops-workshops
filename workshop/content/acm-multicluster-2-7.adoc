@@ -279,6 +279,7 @@ image::images/acm-images/book_topology.png[]
 
 [start=6]
 6. Under the topology view, Select the *Route* and click on the *Launch Route* *URL*, this will take you to the Book Import application with several books available.
+(Please note that the URL should be http instead of https)
 
 image::images/acm-images/book_website.png[]
 
