@@ -117,6 +117,13 @@ To begin, use the following link to log-in
 to the `OpenShift Cluster's GUI`. (note: do not use the built-in 
 console for these steps)
 `{{ MASTER_URL }}`
+
+You may need to switch from `All-Clusters` to `local-clusters`.
+
+
+image::images/local-cluster.png[]
+
+
 then follow these steps:
 
 1. Install the `Cluster Logging Operator`:
