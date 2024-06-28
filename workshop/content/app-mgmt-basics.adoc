@@ -66,7 +66,7 @@ message by running `oc new-app -h`.
 ### Pods
 
 .OpenShift Pods
-image::images/openshift_pod.png[]
+image::images/openshift_pod_new.png[]
 
 Pods are one or more containers deployed together on a host. A pod is the
 smallest compute unit you can define, deploy and manage in OpenShift. Each pod is allocated
@@ -108,27 +108,24 @@ NOTE: The `-l deployment=mapit` selects the pod that is related to the
 And you will see output similar to the following:
 
 ----
-NAME                    READY   STATUS    RESTARTS   AGE
-mapit-85ddc7b8f-9h65k   1/1     Running   0          102s
-[ec2-user@bastion ~]$ oc describe pod -l deployment=mapit
-Name:         mapit-85ddc7b8f-9h65k
+Name:         mapit-85ddc7b8f-prb5b
 Namespace:    app-management
 Priority:     0
-Node:         ip-10-0-61-146.us-east-2.compute.internal/10.0.61.146
-Start Time:   Mon, 17 Jun 2024 13:55:56 +0000
+Node:         ip-10-0-17-9.us-east-2.compute.internal/10.0.17.9
+Start Time:   Fri, 28 Jun 2024 10:31:38 +0000
 Labels:       deployment=mapit
               pod-template-hash=85ddc7b8f
 Annotations:  k8s.ovn.org/pod-networks:
-                {"default":{"ip_addresses":["10.128.2.94/23"],"mac_address":"0a:58:0a:80:02:5e","gateway_ips":["10
-.128.2.1"],"routes":[{"dest":"10.128.0.0...
+                {"default":{"ip_addresses":["10.131.0.115/23"],"mac_address":"0a:58:0a:83:00:73","gateway_ips":["1
+0.131.0.1"],"routes":[{"dest":"10.128.0....
               k8s.v1.cni.cncf.io/network-status:
                 [{
                     "name": "ovn-kubernetes",
                     "interface": "eth0",
                     "ips": [
-                        "10.128.2.94"
+                        "10.131.0.115"
                     ],
-                    "mac": "0a:58:0a:80:02:5e",
+                    "mac": "0a:58:0a:83:00:73",
                     "default": true,
                     "dns": {}
                 }]
@@ -136,13 +133,13 @@ Annotations:  k8s.ovn.org/pod-networks:
               openshift.io/scc: restricted-v2
               seccomp.security.alpha.kubernetes.io/pod: runtime/default
 Status:       Running
-IP:           10.128.2.94
+IP:           10.131.0.115
 IPs:
-  IP:           10.128.2.94
+  IP:           10.131.0.115
 Controlled By:  ReplicaSet/mapit-85ddc7b8f
 Containers:
   mapit:
-    Container ID:   cri-o://6e434835bbda7f61a5efd692d44665506c285e328e30f134a60e5df9252b167c
+    Container ID:   cri-o://972d14cfe63ad21ce14518e15aa3e02ef2e117b5846790016c0ce496e06fc655
     Image:          quay.io/openshiftroadshow/mapit@sha256:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d8093
 9efd1de9d
     Image ID:       quay.io/openshiftroadshow/mapit@sha256:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d8093
@@ -150,12 +147,12 @@ Containers:
     Ports:          8080/TCP, 8778/TCP, 9779/TCP
     Host Ports:     0/TCP, 0/TCP, 0/TCP
     State:          Running
-      Started:      Mon, 17 Jun 2024 13:56:14 +0000
+      Started:      Fri, 28 Jun 2024 10:31:45 +0000
     Ready:          True
     Restart Count:  0
     Environment:    <none>
     Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gtlg6 (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vhfrp (ro)
 Conditions:
   Type              Status
   Initialized       True
@@ -163,7 +160,7 @@ Conditions:
   ContainersReady   True
   PodScheduled      True
 Volumes:
-  kube-api-access-gtlg6:
+  kube-api-access-vhfrp:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
@@ -178,15 +175,15 @@ Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists fo
 Events:
   Type    Reason          Age   From               Message
   ----    ------          ----  ----               -------
-  Normal  Scheduled       106s  default-scheduler  Successfully assigned app-management/mapit-85ddc7b8f-9h65k to i
-p-10-0-61-146.us-east-2.compute.internal
-  Normal  AddedInterface  106s  multus             Add eth0 [10.128.2.94/23] from ovn-kubernetes
-  Normal  Pulling         106s  kubelet            Pulling image "quay.io/openshiftroadshow/mapit@sha256:1366b430c
+  Normal  Scheduled       89s   default-scheduler  Successfully assigned app-management/mapit-85ddc7b8f-prb5b to i
+p-10-0-17-9.us-east-2.compute.internal
+  Normal  AddedInterface  89s   multus             Add eth0 [10.131.0.115/23] from ovn-kubernetes
+  Normal  Pulling         89s   kubelet            Pulling image "quay.io/openshiftroadshow/mapit@sha256:1366b430c
 7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d"
-  Normal  Pulled          90s   kubelet            Successfully pulled image "quay.io/openshiftroadshow/mapit@sha2
-56:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d" in 16.201s (16.201s including waiting)
-  Normal  Created         89s   kubelet            Created container mapit
-  Normal  Started         89s   kubelet            Started container mapit
+  Normal  Pulled          82s   kubelet            Successfully pulled image "quay.io/openshiftroadshow/mapit@sha2
+56:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d" in 6.28s (6.28s including waiting)
+  Normal  Created         82s   kubelet            Created container mapit
+  Normal  Started         82s   kubelet            Started container mapit
 ----
 
 This is a more detailed description of the pod that is running. You can see what
@@ -195,7 +192,7 @@ and other information about what is going on.
 
 ### Services
 .OpenShift Service
-image::images/openshift_service.png[]
+image::images/openshift_service_new.png[]
 
 *Services* provide a convenient abstraction layer inside OpenShift to find a
 group of like *Pods*. They also act as an internal proxy/load balancer between
@@ -259,17 +256,17 @@ Selector:          deployment=mapit
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                172.30.239.63
-IPs:               172.30.239.63
+IP:                172.30.144.59
+IPs:               172.30.144.59
 Port:              8080-tcp  8080/TCP
 TargetPort:        8080/TCP
-Endpoints:         10.128.2.94:8080
+Endpoints:         10.131.0.115:8080
 Port:              8778-tcp  8778/TCP
 TargetPort:        8778/TCP
-Endpoints:         10.128.2.94:8778
+Endpoints:         10.131.0.115:8778
 Port:              9779-tcp  9779/TCP
 TargetPort:        9779/TCP
-Endpoints:         10.128.2.94:9779
+Endpoints:         10.131.0.115:9779
 Session Affinity:  None
 Events:            <none>
 ----
@@ -293,19 +290,19 @@ kind: Service
 metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: "2024-06-17T13:55:56Z"
+  creationTimestamp: "2024-06-28T10:31:37Z"
   labels:
     app: mapit
     app.kubernetes.io/component: mapit
     app.kubernetes.io/instance: mapit
   name: mapit
   namespace: app-management
-  resourceVersion: "128343"
-  uid: 12f9b20b-2ff9-4924-8d06-2e965b217a95
+  resourceVersion: "187560"
+  uid: 309c7adc-66ff-4be2-9fae-e41f85172c9f
 spec:
-  clusterIP: 172.30.239.63
+  clusterIP: 172.30.144.59
   clusterIPs:
-  - 172.30.239.63
+  - 172.30.144.59
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
@@ -514,17 +511,17 @@ Selector:          deployment=mapit
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                172.30.239.63
-IPs:               172.30.239.63
+IP:                172.30.144.59
+IPs:               172.30.144.59
 Port:              8080-tcp  8080/TCP
 TargetPort:        8080/TCP
-Endpoints:         10.128.2.94:8080,10.131.0.99:8080
+Endpoints:         10.128.2.81:8080,10.131.0.115:8080
 Port:              8778-tcp  8778/TCP
 TargetPort:        8778/TCP
-Endpoints:         10.128.2.94:8778,10.131.0.99:8778
+Endpoints:         10.128.2.81:8778,10.131.0.115:8778
 Port:              9779-tcp  9779/TCP
 TargetPort:        9779/TCP
-Endpoints:         10.128.2.94:9779,10.131.0.99:9779
+Endpoints:         10.128.2.81:9779,10.131.0.115:9779
 Session Affinity:  None
 Events:            <none>
 ----
@@ -612,7 +609,7 @@ fixed it by scheduling the *Pods*.
 
 ### Background: Routes
 .OpenShift Route
-image::images/openshift_route.png[]
+image::images/openshift_route_new.png[]
 
 While *Services* provide internal abstraction and load balancing within an
 OpenShift environment, sometimes clients (users, systems, devices, etc.)
