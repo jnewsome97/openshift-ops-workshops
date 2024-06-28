@@ -1,10 +1,5 @@
 ## Environment Overview
 
-
-Welcome to the *Modern Application Development Roadshow* Operations (Ops) Track lab guide.
-
-image::mad_ops_intro.png[width=100%]
-
 You will be interacting with an OpenShift 4 cluster that is running on {{
 ENVIRONMENT }}.
 
