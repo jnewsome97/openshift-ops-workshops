@@ -150,22 +150,22 @@ ls -al ~/cluster-$GUID
 You'll see something like the following:
 
 ----
-total 3236
-drwxrwxr-x.  4 ec2-user ec2-user    4096 Jun 17 12:23 .
-drwx------. 13 ec2-user ec2-user    4096 Jun 17 12:42 ..
-drwxr-x---.  2 ec2-user ec2-user      50 Jun 17 11:46 auth
--rw-r-----.  1 ec2-user ec2-user      32 Jun 17 11:52 bootstrap.tfvars.json
--rw-r-----.  1 ec2-user ec2-user     815 Jun 17 11:52 cluster.tfvars.json
--rw-rw----.  1 ec2-user ec2-user    4126 Jun 17 11:45 install-config.yaml.bak
--rw-r-----.  1 ec2-user ec2-user     375 Jun 17 11:46 metadata.json
--rw-rw-r--.  1 ec2-user ec2-user  727152 Jun 17 12:23 .openshift_install.log
--rw-rw-r--.  1 ec2-user ec2-user   34532 Jun 17 12:23 .openshift_install.log.gz
--rw-r-----.  1 ec2-user ec2-user 1970013 Jun 17 11:52 .openshift_install_state.json
--rw-r-----.  1 ec2-user ec2-user     181 Jun 17 12:08 terraform.bootstrap.tfstate
--rw-r-----.  1 ec2-user ec2-user  232892 Jun 17 11:52 terraform.cluster.tfstate
--rw-r-----.  1 ec2-user ec2-user    1455 Jun 17 11:46 terraform.platform.auto.tfvars.json
--rw-r-----.  1 ec2-user ec2-user  305505 Jun 17 11:46 terraform.tfvars.json
-drwxr-x---.  2 ec2-user ec2-user      62 Jun 17 11:46 tls
+total 3112
+drwxrwxr-x.  4 ec2-user ec2-user    4096 Jun 28 08:08 .
+drwx------. 13 ec2-user ec2-user    4096 Jun 28 08:24 ..
+drwxr-x---.  2 ec2-user ec2-user      50 Jun 28 07:35 auth
+-rw-r-----.  1 ec2-user ec2-user      32 Jun 28 07:41 bootstrap.tfvars.json
+-rw-r-----.  1 ec2-user ec2-user     816 Jun 28 07:41 cluster.tfvars.json
+-rw-rw----.  1 ec2-user ec2-user    4127 Jun 28 07:34 install-config.yaml.bak
+-rw-r-----.  1 ec2-user ec2-user     375 Jun 28 07:35 metadata.json
+-rw-rw-r--.  1 ec2-user ec2-user  604714 Jun 28 08:07 .openshift_install.log
+-rw-rw-r--.  1 ec2-user ec2-user   31303 Jun 28 08:08 .openshift_install.log.gz
+-rw-r-----.  1 ec2-user ec2-user 1970047 Jun 28 07:41 .openshift_install_state.json
+-rw-r-----.  1 ec2-user ec2-user     181 Jun 28 07:55 terraform.bootstrap.tfstate
+-rw-r-----.  1 ec2-user ec2-user  232882 Jun 28 07:41 terraform.cluster.tfstate
+-rw-r-----.  1 ec2-user ec2-user    1457 Jun 28 07:35 terraform.platform.auto.tfvars.json
+-rw-r-----.  1 ec2-user ec2-user  305517 Jun 28 07:35 terraform.tfvars.json
+drwxr-x---.  2 ec2-user ec2-user      62 Jun 28 07:35 tls
 ----
 
 The OpenShift 4 IPI installation embeds Terraform in order to create some of
@@ -182,17 +182,17 @@ tail -n10 ~/cluster-$GUID/.openshift_install.log
 You will see something like the following::
 
 ----
-time="2024-06-17T12:23:30Z" level=info msg="Login to the console with user: \"kubeadmin\", and password: \"2fIbV-K
-4zVe-VcS58-2jVVt\""
-time="2024-06-17T12:23:30Z" level=debug msg="Time elapsed per stage:"
-time="2024-06-17T12:23:30Z" level=debug msg="                    cluster: 5m13s"
-time="2024-06-17T12:23:30Z" level=debug msg="                  bootstrap: 1m9s"
-time="2024-06-17T12:23:30Z" level=debug msg="         Bootstrap Complete: 12m22s"
-time="2024-06-17T12:23:30Z" level=debug msg="                        API: 2m23s"
-time="2024-06-17T12:23:30Z" level=debug msg="          Bootstrap Destroy: 3m4s"
-time="2024-06-17T12:23:30Z" level=debug msg="Cluster Operators Available: 9m38s"
-time="2024-06-17T12:23:30Z" level=debug msg="   Cluster Operators Stable: 5m52s"
-time="2024-06-17T12:23:30Z" level=info msg="Time elapsed: 37m29s"
+time="2024-06-28T08:07:57Z" level=info msg="Login to the console with user: \"kubeadmin\", and password: \"fqEik-f
+RyGN-C9fxo-9tFV3\""
+time="2024-06-28T08:07:57Z" level=debug msg="Time elapsed per stage:"
+time="2024-06-28T08:07:57Z" level=debug msg="                    cluster: 5m11s"
+time="2024-06-28T08:07:57Z" level=debug msg="                  bootstrap: 1m9s"
+time="2024-06-28T08:07:57Z" level=debug msg="         Bootstrap Complete: 11m33s"
+time="2024-06-28T08:07:57Z" level=debug msg="                        API: 2m5s"
+time="2024-06-28T08:07:57Z" level=debug msg="          Bootstrap Destroy: 2m6s"
+time="2024-06-28T08:07:57Z" level=debug msg="Cluster Operators Available: 12m9s"
+time="2024-06-28T08:07:57Z" level=debug msg="   Cluster Operators Stable: 39s"
+time="2024-06-28T08:07:57Z" level=info msg="Time elapsed: 33m0s"
 ----
 
 The installation was run as a different system user, and the artifacts folder
@@ -224,7 +224,7 @@ And you will see some output like:
 
 ```
 NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
-version   4.15.16   True        False         70m     Cluster version is 4.15.16
+version   4.15.18   True        False         141m    Cluster version is 4.15.18
 ```
 
 For more details, you can execute the following command:
@@ -244,7 +244,7 @@ Annotations:  <none>
 API Version:  config.openshift.io/v1
 Kind:         ClusterVersion
 Metadata:
-  Creation Timestamp:  2024-06-17T11:55:41Z
+  Creation Timestamp:  2024-06-28T07:44:21Z
   Generation:          2
   Managed Fields:
     API Version:  config.openshift.io/v1
@@ -256,33 +256,23 @@ Metadata:
         f:clusterID:
     Manager:      cluster-bootstrap
     Operation:    Update
-    Time:         2024-06-17T11:55:41Z
+    Time:         2024-06-28T07:44:21Z
     API Version:  config.openshift.io/v1
     Fields Type:  FieldsV1
     fieldsV1:
-      f:status:
-      ...
-  Desired:
-    Channels:
-      candidate-4.15
-      candidate-4.16
-      fast-4.15
-      stable-4.15
-    Image:    quay.io/openshift-release-dev/ocp-release@sha256:4bdebcbc36c2b4c383b70cf5e23b168f8bf445eba42fc8f3316
-43608a60398e8
-    URL:      https://access.redhat.com/errata/RHBA-2024:3488
-    Version:  4.15.16
-  History:
-    Completion Time:    2024-06-17T12:17:39Z
-    Image:              quay.io/openshift-release-dev/ocp-release@sha256:4bdebcbc36c2b4c383b70cf5e23b168f8bf445eba
-42fc8f331643608a60398e8
-    Started Time:       2024-06-17T11:55:46Z
-    State:              Completed
-    Verified:           false
-    Version:            4.15.16
-  Observed Generation:  2
-  Version Hash:         aYYl2CDD_d0=
-Events:                 <none>
+...
+    Manager:         cluster-version-operator
+    Operation:       Update
+    Subresource:     status
+    Time:            2024-06-28T08:36:17Z
+  Resource Version:  70416
+  UID:               fe17fc81-024a-4b91-815d-7d1e77e7b687
+Spec:
+  Channel:     stable-4.15
+  Cluster ID:  3d0060f3-5d66-4fc8-a95b-b93a4cc6d6e0
+Status:
+  Available Updates:  <nil>
+...
 ```
 
 #### Look at the Nodes
@@ -298,11 +288,11 @@ The output should look something like the following:
 
 ----
 NAME                                        STATUS   ROLES                  AGE    VERSION
-ip-10-0-11-77.us-east-2.compute.internal    Ready    worker                 104m   v1.28.10+a2c84a5
-ip-10-0-6-167.us-east-2.compute.internal    Ready    control-plane,master   114m   v1.28.10+a2c84a5
-ip-10-0-61-146.us-east-2.compute.internal   Ready    worker                 103m   v1.28.10+a2c84a5
-ip-10-0-62-144.us-east-2.compute.internal   Ready    control-plane,master   113m   v1.28.10+a2c84a5
-ip-10-0-88-134.us-east-2.compute.internal   Ready    control-plane,master   114m   v1.28.10+a2c84a5
+ip-10-0-16-246.us-east-2.compute.internal   Ready    control-plane,master   164m   v1.28.10+a2c84a5
+ip-10-0-17-9.us-east-2.compute.internal     Ready    worker                 158m   v1.28.10+a2c84a5
+ip-10-0-33-169.us-east-2.compute.internal   Ready    control-plane,master   164m   v1.28.10+a2c84a5
+ip-10-0-57-204.us-east-2.compute.internal   Ready    worker                 157m   v1.28.10+a2c84a5
+ip-10-0-94-203.us-east-2.compute.internal   Ready    control-plane,master   164m   v1.28.10+a2c84a5
 ----
 
 You have 3 masters and 2 workers. The OpenShift *Master* is also a *Node*
