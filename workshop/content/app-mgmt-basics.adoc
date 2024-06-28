@@ -649,7 +649,7 @@ oc expose service mapit
 You will see:
 
 ----
-route.route.openshift.io/mapit exposed
+route/mapit exposed
 ----
 
 Verify the *Route* was created with the following command:
