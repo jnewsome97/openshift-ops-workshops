@@ -192,7 +192,7 @@ and other information about what is going on.
 
 ### Services
 .OpenShift Service
-image::images/openshift_service_new.png[width=30%]
+image::images/openshift_service_new.png[width=50%]
 
 *Services* provide a convenient abstraction layer inside OpenShift to find a
 group of like *Pods*. They also act as an internal proxy/load balancer between
@@ -609,7 +609,7 @@ fixed it by scheduling the *Pods*.
 
 ### Background: Routes
 .OpenShift Route
-image::images/openshift_route_new.png[width=30%]
+image::images/openshift_route_new.png[width=50%]
 
 While *Services* provide internal abstraction and load balancing within an
 OpenShift environment, sometimes clients (users, systems, devices, etc.)
