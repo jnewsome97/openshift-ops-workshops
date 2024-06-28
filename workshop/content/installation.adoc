@@ -67,7 +67,7 @@ export GUID=`hostname | cut -d. -f2`
 ### Master Components
 
 .OpenShift Master's 4 main responsibilities.
-image::images/openshift_master_4_responsibilities.png[]
+image::images/openshift_master_4_responsibilities_new.png[]
 
 
 #### API/Authentication
