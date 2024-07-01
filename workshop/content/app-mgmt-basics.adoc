@@ -858,5 +858,5 @@ oc get route mapit -o jsonpath='{.spec.host}' | sed 's/^/http:\/\//'
 
 It should look something like this:
 
-image::images/mapit-app-route.png[width=30%]
+image::images/mapit-app-route.png[width=50%]
 
