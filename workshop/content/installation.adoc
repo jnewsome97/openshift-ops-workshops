@@ -318,15 +318,13 @@ The web console actually runs as an application inside the OpenShift
 environment and is exposed via the OpenShift Router. You will learn more
 about the router in a subsequent exercise.
 
-This lab comes with an integrated webconsole so you don't have to open
-the web console in another tab.
+This lab comes with an integrated webconsole but we recommend you use the external one.
 
 image::images/consoletab.png[]
 
-This web console works for most things in the lab. If you find that
-something isn't working (or simply not there); please feel free to open
-the web console in another tab. You can do this by simply control+click
-the following link:
+If you find that something isn't working (or simply not there); 
+please feel free to open the web console in another tab. 
+You can do this by simply control+click the following link:
 
 {{ MASTER_URL }}
 
