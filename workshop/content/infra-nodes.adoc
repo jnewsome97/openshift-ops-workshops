@@ -305,12 +305,12 @@ infrastructure nodes, we want to tell the operator to put the router
 instances on nodes with the role of `infra`.
 
 The OpenShift router operator uses a custom resource definition (`CRD`)
-called `ingresses.config.openshift.io` to define the default routing
+called `ingresses.config/cluster` to define the default routing
 subdomain for the cluster:
 
 [source,bash,role="execute"]
 ----
-oc get ingresses.config.openshift.io cluster -o yaml
+oc get ingresses.config/cluster -o yaml
 ----
 
 The `cluster` object is observed by the router operator as well as the
@@ -331,13 +331,13 @@ spec:
 status: {}
 ```
 
-Individual router deployments are managed via the
-`ingresscontrollers.operator.openshift.io` CRD. There is a default one
+Individual router deployments are managed via 
+`ingresscontrollers/default` (the default IngressController). There is a default one
 created in the `openshift-ingress-operator` namespace:
 
 [source,bash,role="execute"]
 ----
-oc get ingresscontrollers.operator.openshift.io default -n openshift-ingress-operator -o yaml
+oc --namespace openshift-ingress-operator get ingresscontrollers/default -o yaml
 ----
 
 Yours looks something like:
@@ -557,6 +557,15 @@ You should see:
 ```
 Error from server (NotFound): configmaps "cluster-monitoring-config" not found
 ```
+
+NOTE: If you have a cluster-monitoring-config, it is recommended that 
+you delete the configuration using the following command
+
+[source,bash,role="execute"]
+----
+oc delete configmap cluster-monitoring-config -n openshift-monitoring
+----
+
 
 The operator will, in turn, create several `ConfigMap` objects for the
 various monitoring stack components, and you can see them, too:
