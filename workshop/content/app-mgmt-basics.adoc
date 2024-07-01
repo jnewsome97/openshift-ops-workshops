@@ -41,7 +41,7 @@ oc new-app quay.io/openshiftroadshow/mapit
 The output will look like:
 
 ----
---> Found container image 7ce7ade (3 years old) from quay.io for "quay.io/openshiftroadshow/mapit"
+--> Found container image a464a13 (8 months old) from quay.io for "quay.io/openshiftroadshow/mapit"
 
     * An image stream tag will be created as "mapit:latest" that will track this image
 
@@ -50,8 +50,8 @@ The output will look like:
     deployment.apps "mapit" created
     service "mapit" created
 --> Success
-    Application is not exposed. You can expose services to the outside world by executin
-g one or more of the commands below:
+    Application is not exposed. You can expose services to the outside world by executing one or more of the comma
+nds below:
      'oc expose service/mapit'
     Run 'oc status' to view your app.
 ----
@@ -108,38 +108,40 @@ NOTE: The `-l deployment=mapit` selects the pod that is related to the
 And you will see output similar to the following:
 
 ----
-Name:         mapit-85ddc7b8f-prb5b
-Namespace:    app-management
-Priority:     0
-Node:         ip-10-0-17-9.us-east-2.compute.internal/10.0.17.9
-Start Time:   Fri, 28 Jun 2024 10:31:38 +0000
-Labels:       deployment=mapit
-              pod-template-hash=85ddc7b8f
-Annotations:  k8s.ovn.org/pod-networks:
-                {"default":{"ip_addresses":["10.131.0.115/23"],"mac_address":"0a:58:0a:83:00:73","gateway_ips":["1
-0.131.0.1"],"routes":[{"dest":"10.128.0....
-              k8s.v1.cni.cncf.io/network-status:
-                [{
-                    "name": "ovn-kubernetes",
-                    "interface": "eth0",
-                    "ips": [
-                        "10.131.0.115"
-                    ],
-                    "mac": "0a:58:0a:83:00:73",
-                    "default": true,
-                    "dns": {}
-                }]
-              openshift.io/generated-by: OpenShiftNewApp
-              openshift.io/scc: restricted-v2
-              seccomp.security.alpha.kubernetes.io/pod: runtime/default
-Status:       Running
-IP:           10.131.0.115
+Name:             mapit-85ddc7b8f-kp4qm
+Namespace:        app-management
+Priority:         0
+Service Account:  default
+Node:             ip-10-0-6-27.us-east-2.compute.internal/10.0.6.27
+Start Time:       Mon, 01 Jul 2024 14:09:05 +0000
+Labels:           deployment=mapit
+                  pod-template-hash=85ddc7b8f
+Annotations:      k8s.ovn.org/pod-networks:
+                    {"default":{"ip_addresses":["10.128.2.103/23"],"mac_address":"0a:58:0a:80:02:67","gateway_ips"
+:["10.128.2.1"],"routes":[{"dest":"10.128.0....
+                  k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "ovn-kubernetes",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.128.2.103"
+                        ],
+                        "mac": "0a:58:0a:80:02:67",
+                        "default": true,
+                        "dns": {}
+                    }]
+                  openshift.io/generated-by: OpenShiftNewApp
+                  openshift.io/scc: restricted-v2
+                  seccomp.security.alpha.kubernetes.io/pod: runtime/default
+Status:           Running
+SeccompProfile:   RuntimeDefault
+IP:               10.128.2.103
 IPs:
-  IP:           10.131.0.115
+  IP:           10.128.2.103
 Controlled By:  ReplicaSet/mapit-85ddc7b8f
 Containers:
   mapit:
-    Container ID:   cri-o://972d14cfe63ad21ce14518e15aa3e02ef2e117b5846790016c0ce496e06fc655
+    Container ID:   cri-o://dcc32474540cb03726f9cf361211496752add5ac2fb215192fd2dcc9274b9587
     Image:          quay.io/openshiftroadshow/mapit@sha256:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d8093
 9efd1de9d
     Image ID:       quay.io/openshiftroadshow/mapit@sha256:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d8093
@@ -147,12 +149,12 @@ Containers:
     Ports:          8080/TCP, 8778/TCP, 9779/TCP
     Host Ports:     0/TCP, 0/TCP, 0/TCP
     State:          Running
-      Started:      Fri, 28 Jun 2024 10:31:45 +0000
+      Started:      Mon, 01 Jul 2024 14:09:13 +0000
     Ready:          True
     Restart Count:  0
     Environment:    <none>
     Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vhfrp (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-qv5vq (ro)
 Conditions:
   Type              Status
   Initialized       True
@@ -160,7 +162,7 @@ Conditions:
   ContainersReady   True
   PodScheduled      True
 Volumes:
-  kube-api-access-vhfrp:
+  kube-api-access-qv5vq:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
@@ -175,15 +177,15 @@ Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists fo
 Events:
   Type    Reason          Age   From               Message
   ----    ------          ----  ----               -------
-  Normal  Scheduled       89s   default-scheduler  Successfully assigned app-management/mapit-85ddc7b8f-prb5b to i
-p-10-0-17-9.us-east-2.compute.internal
-  Normal  AddedInterface  89s   multus             Add eth0 [10.131.0.115/23] from ovn-kubernetes
-  Normal  Pulling         89s   kubelet            Pulling image "quay.io/openshiftroadshow/mapit@sha256:1366b430c
+  Normal  Scheduled       65s   default-scheduler  Successfully assigned app-management/mapit-85ddc7b8f-kp4qm to i
+p-10-0-6-27.us-east-2.compute.internal
+  Normal  AddedInterface  65s   multus             Add eth0 [10.128.2.103/23] from ovn-kubernetes
+  Normal  Pulling         65s   kubelet            Pulling image "quay.io/openshiftroadshow/mapit@sha256:1366b430c
 7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d"
-  Normal  Pulled          82s   kubelet            Successfully pulled image "quay.io/openshiftroadshow/mapit@sha2
-56:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d" in 6.28s (6.28s including waiting)
-  Normal  Created         82s   kubelet            Created container mapit
-  Normal  Started         82s   kubelet            Started container mapit
+  Normal  Pulled          58s   kubelet            Successfully pulled image "quay.io/openshiftroadshow/mapit@sha2
+56:1366b430c7d4bddf35c7b2d067bc24e8d67ba297dbaacd10e0d80939efd1de9d" in 6.14s (6.14s including waiting)
+  Normal  Created         58s   kubelet            Created container mapit
+  Normal  Started         58s   kubelet            Started container mapit
 ----
 
 This is a more detailed description of the pod that is running. You can see what
@@ -256,17 +258,17 @@ Selector:          deployment=mapit
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                172.30.144.59
-IPs:               172.30.144.59
+IP:                172.30.121.200
+IPs:               172.30.121.200
 Port:              8080-tcp  8080/TCP
 TargetPort:        8080/TCP
-Endpoints:         10.131.0.115:8080
+Endpoints:         10.128.2.103:8080
 Port:              8778-tcp  8778/TCP
 TargetPort:        8778/TCP
-Endpoints:         10.131.0.115:8778
+Endpoints:         10.128.2.103:8778
 Port:              9779-tcp  9779/TCP
 TargetPort:        9779/TCP
-Endpoints:         10.131.0.115:9779
+Endpoints:         10.128.2.103:9779
 Session Affinity:  None
 Events:            <none>
 ----
@@ -290,19 +292,19 @@ kind: Service
 metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: "2024-06-28T10:31:37Z"
+  creationTimestamp: "2024-07-01T14:09:05Z"
   labels:
     app: mapit
     app.kubernetes.io/component: mapit
     app.kubernetes.io/instance: mapit
   name: mapit
   namespace: app-management
-  resourceVersion: "187560"
-  uid: 309c7adc-66ff-4be2-9fae-e41f85172c9f
+  resourceVersion: "381508"
+  uid: 2c65dc97-9348-4b6f-b692-4f93d8bc60aa
 spec:
-  clusterIP: 172.30.144.59
+  clusterIP: 172.30.121.200
   clusterIPs:
-  - 172.30.144.59
+  - 172.30.121.200
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
@@ -511,17 +513,17 @@ Selector:          deployment=mapit
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                172.30.144.59
-IPs:               172.30.144.59
+IP:                172.30.121.200
+IPs:               172.30.121.200
 Port:              8080-tcp  8080/TCP
 TargetPort:        8080/TCP
-Endpoints:         10.128.2.81:8080,10.131.0.115:8080
+Endpoints:         10.128.2.103:8080,10.131.0.112:8080
 Port:              8778-tcp  8778/TCP
 TargetPort:        8778/TCP
-Endpoints:         10.128.2.81:8778,10.131.0.115:8778
+Endpoints:         10.128.2.103:8778,10.131.0.112:8778
 Port:              9779-tcp  9779/TCP
 TargetPort:        9779/TCP
-Endpoints:         10.128.2.81:9779,10.131.0.115:9779
+Endpoints:         10.128.2.103:9779,10.131.0.112:9779
 Session Affinity:  None
 Events:            <none>
 ----
@@ -846,3 +848,15 @@ recent RS has a desired scale of 1.
 
 If you `oc describe` each of these RSs you will see how earlier versions have
 no probes, and the latest running RS has the new probes.
+
+Feel free to try out the mapit application:
+
+[source,bash,role="execute"]
+----
+oc get route mapit -o jsonpath='{.spec.host}' | sed 's/^/http:\/\//'
+----
+
+It should look something like this:
+
+image::images/mapit-app-route.png[width=30%]
+
