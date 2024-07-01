@@ -52,17 +52,19 @@ of the `MachineSet` and various labels.
 
 ```YAML
 metadata:
-  creationTimestamp: 2019-01-25T16:00:34Z
-  generation: 1
+  annotations:
+    capacity.cluster-autoscaler.kubernetes.io/labels: kubernetes.io/arch=amd64
+    machine.openshift.io/GPU: "0"
+    machine.openshift.io/memoryMb: "131072"
+    machine.openshift.io/vCPU: "32"
+  creationTimestamp: "2024-07-01T08:08:06Z"
+  generation: 3
   labels:
-    machine.openshift.io/cluster-api-cluster: 190125-3
-    machine.openshift.io/cluster-api-machine-role: worker
-    machine.openshift.io/cluster-api-machine-type: worker
-  name: 190125-3-worker-us-east-1b
+    machine.openshift.io/cluster-api-cluster: cluster-pn5pp-g5lb8
+  name: cluster-pn5pp-g5lb8-worker-us-east-2b
   namespace: openshift-machine-api
-  resourceVersion: "9027"
-  selfLink: /apis/cluster.k8s.io/v1alpha1/namespaces/openshift-machine-api/machinesets/190125-3-worker-us-east-1b
-  uid: 591b4d06-20ba-11e9-a880-068acb199400
+  resourceVersion: "419102"
+  uid: c07aa6d4-8621-4753-97ad-e13e010b7c34
 ```
 
 [Note]
@@ -77,14 +79,14 @@ the operator which machines are associated with the set:
 
 ```YAML
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: 190125-3
-      machine.openshift.io/cluster-api-machineset: 190125-3-worker-us-east-1b
+      machine.openshift.io/cluster-api-cluster: cluster-pn5pp-g5lb8
+      machine.openshift.io/cluster-api-machineset: cluster-pn5pp-g5lb8-worker-us-east-2b
 ```
 
-In this case, the cluster name is `190125-3` and there is an additional
+In this case, the cluster name is `cluster-pn5pp-g5lb8` and there is an additional
 label for the whole set.
 
 ### Template Metadata
@@ -93,13 +95,13 @@ The `template` is the part of the `MachineSet` that templates out the
 make sure that things match here when we make changes:
 
 ```YAML
-  template:
-    metadata: {}
+ template:
+    metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: 190125-3
+        machine.openshift.io/cluster-api-cluster: cluster-pn5pp-g5lb8
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: 190125-3-worker-us-east-1b
+        machine.openshift.io/cluster-api-machineset: cluster-pn5pp-g5lb8-worker-us-east-2b
 ```
 
 #### Template Spec
@@ -113,13 +115,13 @@ specific labels. As you've seen in the examples above, labels go in
 `metadata` sections:
 
 ```YAML
-  spec:
-      metadata:
-        creationTimestamp: null
+spec:
+      lifecycleHooks: {}
+      metadata: {}
       providerSpec:
         value:
           ami:
-            id: ami-08871aee06d13e584
+            id: ami-049d8fda91038a0fd
 ...
 ```
 
