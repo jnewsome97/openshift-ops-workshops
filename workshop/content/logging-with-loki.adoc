@@ -73,7 +73,7 @@ Use that file to create the namespace by running the following command:
 
 [source,bash,role="execute"]
 ----
-oc create -f openshift_logging_namespace.yaml
+oc create -f {{ HOME_PATH }}/support/openshift_logging_namespace.yaml
 ----
 
 Next, verify that the namespace has been created with this command:
