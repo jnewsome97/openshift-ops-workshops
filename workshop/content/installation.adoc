@@ -370,7 +370,7 @@ You can do this by simply control+click the following link:
 
 When accessing the console for the first time you should switch from `All Clusters` to `local-clsuter`. We will be using the local-cluster for the majority of the excerises (apart from ACM).
 
-image::images/cluster-switch.png[]
+image::images/cluster-switch.png[width=50%]
 
 #### You will now exit the ssh session
 [source,role="execute"]
