@@ -425,6 +425,8 @@ spec:
 [start=7]
 7. Navigate to the Results screen, allow the scan to complete.
 
+image::images/acm-images-new/inform_results.png[]
+
 Once complete notice the violations you have, since we created this policy as a Inform only it will not fix any of the violations, lets go ahead and fix them
 
 [start=8]
@@ -436,7 +438,7 @@ Once complete notice the violations you have, since we created this policy as a 
 [start=12]
 12. Navigate to the Results screen, allow the remediation to complete, _it may take longer (20-30 mins) to enforce the policy._
 
-image::images/acm-images-new/policy7.png[]
+image::images/acm-images-new/enforce_results.png[]
 
 
 
