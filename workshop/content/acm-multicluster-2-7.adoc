@@ -167,7 +167,7 @@ image::images/acm-images-new/node_0.png[]
 [start=8]
 8. Click on the *install-config* tab in the YAML window pane and *change the master replica number to 1* (will likely be 3).  Double check that the worker replica is 0.
 
-image::images/acm-images-new/install-config.png[]
+image::images/acm-images/install-config.png[]
 
 [start=9]
 9. Click back on the *cluster* tab in the YAML window pane and locate the section that defines an object of type: *kind: MachinePool*. Add the following line at the end of the *MachinePool* section.
