@@ -14,7 +14,7 @@ If you navigate to `Local-cluster` then you should see the new ACM console when 
 
 Once there you can proceed with the module.
 
-image::images/acm-images/RHACM_all_cluster.png[]
+image::images/acm-images-new/RHACM_all_cluster.png[]
 
 
 
@@ -25,15 +25,15 @@ image::images/acm-images/RHACM_all_cluster.png[]
 1. Once you have logged in to ACM, Navigate to *Credentials menu* and then select *Add Credentials*
 
 
-image::images/acm-images/credentials.png[]
+image::images/acm-images-new/credentials.png[]
 
-image::images/acm-images/add_cred.png[]
+image::images/acm-images-new/add_cred.png[]
 
 === You will need to provide connection details:
 
 * Cloud Provider Credentials: Choose *Amazon Web Services* +
 
-image::images/acm-images/aws_cred.png[]
+image::images/acm-images-new/aws_cred.png[]
 
 ### Screen 1: Basic Info
 
@@ -43,7 +43,7 @@ image::images/acm-images/aws_cred.png[]
 
 When copy and pasting this information, make sure you omit the dot on the url, for example it should read `sandbox1536.opentlc.com` not `.sandbox1536.opentlc.com`
 
-image::images/acm-images/cred_basicinfo.png[]
+image::images/acm-images-new/cred_basicinfo.png[]
 
 [start=2]
 2. Click NEXT
@@ -56,7 +56,7 @@ demo console under the field *AWS_ACCESS_KEY_ID*
 * Secret Access Key ID: This information is located on the creds page 
 for the demo console under the field *AWS_SECRET_ACCESS_KEY*
 
-image::images/acm-images/screen2.png[]
+image::images/acm-images-new/screen2.png[]
 
 [start=3]
 3. Click NEXT - We don't need to configure a Proxy so we can skip this screen
@@ -69,7 +69,7 @@ image::images/acm-images/screen2.png[]
 
 * Red Hat OpenShift pull secret:  https://cloud.redhat.com/openshift/install/pull-secret[Get the pull secret from cloud.redhat.com - RH login Required]
 
-image::images/acm-images/pull_secret.png[]
+image::images/acm-images-new/pull_secret.png[]
 
 * SSH private and public keys:  Use an existing key pair or https://docs.openshift.com/container-platform/4.14/installing/installing_aws/installing-aws-default.html#ssh-agent-using_installing-aws-default[generate a new ssh key]
 
@@ -78,7 +78,7 @@ image::images/acm-images/pull_secret.png[]
 [start=4]
 4. Click NEXT
 
-image::images/acm-images/screen4.png[]
+image::images/acm-images-new/screen4.png[]
 
 [start=5]
 5. Verify the information and click *ADD*
@@ -89,18 +89,18 @@ image::images/acm-images/screen4.png[]
 1. From the menu select *Infrastructure → Clusters*
 2. Click *Create Cluster*
 
-image::images/acm-images/create_cluster.png[]
+image::images/acm-images-new/create_cluster.png[]
 
 
 [start=3]
 3. Select *Amazon Web services*
 
-image::images/acm-images/aws_cluster.png[]
+image::images/acm-images-new/aws_cluster.png[]
 
 [start=4]
 4. Select *Standalone*
 
-image::images/acm-images/standalone.png[]
+image::images/acm-images-new/standalone.png[]
 
 [start=5]
 5. Select the *Infrastructure provider credential* we just created called *AWS*
@@ -159,7 +159,7 @@ While we wait for the main cluster to provision, lets go ahead and provision a S
 [start=6]
 6. Expand the *Worker Pools*, and change the worker node count to 0
 
-image::images/acm-images/node_0.png[]
+image::images/acm-images-new/node_0.png[]
 
 [start=7]
 7. Click on step 7 to Review *before* proceeding, turn *YAML: ON at the top of the screen.*
@@ -167,7 +167,7 @@ image::images/acm-images/node_0.png[]
 [start=8]
 8. Click on the *install-config* tab in the YAML window pane and *change the master replica number to 1* (will likely be 3).  Double check that the worker replica is 0.
 
-image::images/acm-images/install-config.png[]
+image::images/acm-images-new/install-config.png[]
 
 [start=9]
 9. Click back on the *cluster* tab in the YAML window pane and locate the section that defines an object of type: *kind: MachinePool*. Add the following line at the end of the *MachinePool* section.
@@ -243,13 +243,13 @@ Prerequisites:
 ** *AWS 1st Cluster* - `environment=prod`
 ** *AWS 2nd Cluster* - `environment=qa`
 
-image::images/acm-images/env_labels.png[]
+image::images/acm-images-new/env_labels.png[]
 
 [start=1]
 1. Navigate to *Applications*
 2. Click *Create application, select Subscription*. 
 
-image::images/acm-images/create_sub_app.png[]
+image::images/acm-images-new/create_sub_app.png[]
 
 [start=3]
 3. Enter the following information:
@@ -265,20 +265,20 @@ image::images/acm-images/create_sub_app.png[]
 4. Verify that *Deploy application resources only on clusters matching specified labels* is selected and enter the following information
 ** *environment*: `dev`. It may ask you to select a 'Cluster set' if it does please choose `default`.
 
-image::images/acm-images/label_sub.png[]
+image::images/acm-images-new/label_sub.png[]
 
 [start=5]
 5. Verify all the information is correct. Click *Create*
 
 It will take a few minutes to deploy the application, *Click* on the *Topology* view and verify that *all of the check marks are green*.
 
-image::images/acm-images/book_topology.png[]
+image::images/acm-images-new/book_topology.png[]
 
 [start=6]
 6. Under the topology view, Select the *Route* and click on the *Launch Route* *URL*, this will take you to the Book Import application with several books available.
 (Please note that the URL should be http instead of https)
 
-image::images/acm-images/book_website.png[]
+image::images/acm-images-new/book_website.png[]
 
 Feel free to experiment with the application.  Edit it and change the label to `environment=prod`.  What happens to the application?
 
@@ -436,7 +436,7 @@ Once complete notice the violations you have, since we created this policy as a 
 [start=12]
 12. Navigate to the Results screen, allow the remediation to complete, _it may take longer (20-30 mins) to enforce the policy._
 
-image::images/acm-images/policy7.png[]
+image::images/acm-images-new/policy7.png[]
 
 
 
