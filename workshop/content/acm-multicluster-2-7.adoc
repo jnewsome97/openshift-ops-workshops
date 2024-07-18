@@ -335,14 +335,14 @@ This is a complex topic, and this course is only providing an overview. Please c
 4. Copy the raw YAML.
 5. Under the *Create Policy* screen, enable the *YAML*. Copy and Paste the *RAW YAML* from the GitHub Repo
 
-It should look something like this:
+It should look something like this (make sure to add the namespace field like below):
 
 ----
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-etcdencryption
-  namespace: default
+  namespace: open-cluster-management
   annotations:
     policy.open-cluster-management.io/standards: NIST SP 800-53
     policy.open-cluster-management.io/categories: SC System and Communications Protection
@@ -386,16 +386,16 @@ spec:
                   name: cluster
                 status:
                   conditions:
-                    - message: 'All resources encrypted: secrets, configmaps'
+                    - message: "All resources encrypted: secrets, configmaps"
                       reason: EncryptionCompleted
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-etcdencryption
-  namespace: default
+  name: policy-etcdencryption-placement
+  namespace: open-cluster-management
 placementRef:
-  name: placement-policy-etcdencryption
+  name: policy-etcdencryption-placement
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
@@ -406,12 +406,15 @@ subjects:
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-etcdencryption
-  namespace: default
+  name: policy-etcdencryption-placement
+  namespace: open-cluster-management
 spec:
   clusterSelector:
     matchExpressions:
-      - {key: environment, operator: In, values: ["dev"]}
+      - key: environment
+        operator: In
+        values:
+          - dev
 ----
 
 
