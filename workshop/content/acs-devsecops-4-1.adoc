@@ -124,11 +124,11 @@ First, we will need to create a token to access ACS central.
 
 Access the RHACS web user interface, select "Platform Configuration" from the left-hand side menu, and then select integrations. Scroll down to the section for authentication tokens and select "StackRox API Token." 
 
-image::images/acs-images/ci-1.png[]
+image::images/acs-images-new/ci-1.png[]
 
 Press the *Generate Token* button in the top right corner and select the token role of "Continuous Integration" with any expiry date.  Give the token a name and press the button titled "Generate".
 
-image::images/acs-images/ci-2.png[]
+image::images/acs-images-new/ci-2.png[]
 
 * Create a token name and click the 'Continuous Integration' role.
 
@@ -161,7 +161,7 @@ You are now ready to run your pipeline!
 
 First, head to the OpenShift console to execute the pipeline. Then click on the *Pipelines* tab to select the *Pipelines* dropdown.
 
-image::images/acs-images/pipeline-1.png[]
+image::images/acs-images-new/pipeline-1.png[]
 
 You should see a pipeline labeled *rox-pipeline*. Let's run one.
 
