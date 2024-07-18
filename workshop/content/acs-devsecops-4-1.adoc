@@ -126,7 +126,7 @@ Access the RHACS web user interface, select "Platform Configuration" from the le
 
 image::images/acs-images/ci-1.png[]
 
-Press the *Generate Token* button in the top right corner and select the token role of "Continuous Integration." Give the token a name and press the button titled "Generate".
+Press the *Generate Token* button in the top right corner and select the token role of "Continuous Integration" with any expiry date.  Give the token a name and press the button titled "Generate".
 
 image::images/acs-images/ci-2.png[]
 
