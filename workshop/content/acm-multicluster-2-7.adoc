@@ -267,9 +267,6 @@ image::images/acm-images/create_sub_app.png[]
 
 image::images/acm-images/label_sub.png[]
 
-
-You do not need the to include the colon (:)
-
 [start=5]
 5. Verify all the information is correct. Click *Create*
 
