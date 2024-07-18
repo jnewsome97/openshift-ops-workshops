@@ -39,7 +39,7 @@ modules:
     name: Multicluster management with ACM
   gitops:
     name: GitOps on OpenShift
-  acm-multicluster-2-7:
+  acm-multicluster-2-10:
     name: Multicluster management with ACM
   acs-vulnerability-4-1:
     name: Vulnerability Scanning with ACS
