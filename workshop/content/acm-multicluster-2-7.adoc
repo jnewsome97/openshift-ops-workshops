@@ -423,7 +423,7 @@ spec:
 * Click Submit.
 
 [start=7]
-7. Navigate to the Results screen, allow the scan to complete, it shouldn't take more than 3 minutes.
+7. Navigate to the Results screen, allow the scan to complete, it can take up to 20-30 minutes for to finish up the enforcement.
 
 Once complete notice the violations you have, since we created this policy as a Inform only it will not fix any of the violations, lets go ahead and fix them
 
