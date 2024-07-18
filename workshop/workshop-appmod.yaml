@@ -18,4 +18,4 @@ modules:
   - taints-and-tolerations
   - acs-vulnerability-4-1
   - acs-devsecops-4-1
-  - acm-multicluster-2-7
+  - acm-multicluster-2-10
