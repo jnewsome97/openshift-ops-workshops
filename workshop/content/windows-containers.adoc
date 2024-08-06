@@ -101,15 +101,23 @@ the Windows Node.
 [source,yaml]
 ----
 ovnKubernetesConfig:
+  egressIPConfig: {}
+  gatewayConfig:
+    ipv4: {}
+    ipv6: {}
+    routingViaHost: false
   genevePort: 6081
   hybridOverlayConfig:
     hybridClusterNetwork:
       - cidr: 10.132.0.0/14
         hostPrefix: 23
+  ipsecConfig:
+    mode: Disabled
   mtu: 8901
   policyAuditConfig:
     destination: "null"
     maxFileSize: 50
+    maxLogFiles: 5
     rateLimit: 20
     syslogFacility: local0
 type: OVNKubernetes
