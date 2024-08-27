@@ -43,7 +43,7 @@ This will allow you to follow along with some of the following discussion.
 ----
 CLUSTERNAME=$(oc get infrastructure cluster -o=jsonpath='{.status.infrastructureName}')
 ZONENAME=$(oc get nodes --sort-by='.metadata.creationTimestamp' -o=jsonpath='{.items[-1:].metadata.labels.topology\.kubernetes\.io/zone}')
-oc get machineset -n openshift-machine-api -o yaml ${CLUSTERNAME}-worker-${ZONENAME}
+oc get machineset.machine.openshift.io -n openshift-machine-api -o yaml ${CLUSTERNAME}-worker-${ZONENAME}
 ----
 
 #### Metadata
