@@ -49,47 +49,6 @@ Resource.
 IMPORTANT: We have set up an external OpenShift Console with kubeadmin credentials exclusively for this workshop. To access it, please refer to the workshop credentials page. Kindly refrain from using the internal OpenShift Console while logged in with the service account within this dashboard.
 ====
 
-To enable metrics service discovery, add the following namespace label
-openshift.io/cluster-monitoring: "true".
- 
-The namespace is represented in yaml format as:
-
-[source,yaml]
-.openshift_logging_namespace.yaml
-----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: openshift-logging
-  annotations:
-    openshift.io/node-selector: ""
-  labels:
-    openshift.io/cluster-logging: "true"
-    openshift.io/cluster-monitoring: "true"
-----
-So `create` a file with the above YAML called 'openshift_logging_namespace.yaml'
-
-Use that file to create the namespace by running the following command:
-
-[source,bash,role="execute"]
-----
-oc create -f openshift_logging_namespace.yaml
-----
-
-Next, verify that the namespace has been created with this command:
-
-[source,bash,role="execute"]
-----
-oc get ns openshift-logging
-----
-
-You should see the following output:
-
-```
-NAME                STATUS   AGE
-openshift-logging   Active   11s
-```
-
 #### Install the `Loki` and  `Cluster Logging` Operators in the cluster
 
 In order to install and configure the logging stack into the cluster,
@@ -129,19 +88,14 @@ namespace was created from the previous steps
 ====
 
   a. In the OpenShift console, click `Operators` → `OperatorHub`.
-  b. Type `OpenShift Logging` in the search box and click the  `Red Hat OpenShift Logging` card from the list of available Operators (choose the newest version you can see, which should be '5.8'), and click `Install`.
-  c. On the `Install Operator` page, *select Update Channel `stable`*. Under `Installation Mode` ensure that `A specific namespace on the cluster` is selected, and choose
-     `Operator recommended Namespace: openshift-logging` under `Installed Namespace`. Leave all other defaults
-      unchanged and then click `Install`.
+  b. Type `OpenShift Logging` in the search box and click the  `Red Hat OpenShift Logging` card from the list of available Operators (In this example we are using '6.1.0'), and then click `Install`.
+  c. On the `Install Operator` page, *select Update Channel `stable-6.1`*. Under `Installation Mode` ensure that `All namespaces on the cluster (default)` is selected. Leave all other defaults unchanged and then click `Install`.
 
 2. Install the `Loki Operator`:
   a. In the OpenShift console, click `Operators` → `OperatorHub`.
-  b. Type `Loki Operator` in the search field and click the `Loki Operator` card from the list of available Operators (choose the newest version you can see, which should be '5.6.1'), and then click `Install`.
-  c. On the `Create Operator Subscription` page, select *Update Channel `stable`*. You should also select `'Enable Operator recommended cluster monitoring on this Namespace'`. Leave all other defaults
+  b. Type `Loki Operator` in the search field and click the `Loki Operator` card from the list of available Operators (In this example we are using '6.1.0'), and then click `Install`.
+  c. On the `Create Operator Subscription` page, select *Update Channel `stable-6.1`*. Leave all other defaults
      and click `Install`.
-+
-This now makes the Operator available to all users and projects that use this
-OpenShift Container Platform cluster.
 
 3. Verify the operator installations:
 
@@ -172,6 +126,32 @@ If either operator does not appear as installed, follow these steps to troublesh
 +
 * Switch to the `Workloads` → `Pods` page and check the logs in any Pods in the
   `openshift-logging` and `openshift-operators` projects that are reporting issues.
+
+3. Install the `Cluster Observability Operator`:
+  a. In the OpenShift console, click `Operators` → `OperatorHub`.
+  b. Type `Cluster Observability Operator` in the search field and click the `Cluster Observability Operator` card from the list of available Operators (In this example we are using '0.4.1'), and then click `Install`.
+  c. On the `Create Operator Subscription` page, select *Update Channel `development`*. Leave all other defaults
+     and click `Install`.
+
+3. Verify the operator installations: After a while, the screen should display a green checkmark, indicating that the operator has been successfully installed.
++
+[Note]
+====
+During installation an operator might display a `Failed` status. If the
+operator then installs with an `InstallSucceeded` message, you can safely
+ignore the `Failed` message.
+====
+
+4. Troubleshooting (optional/if needed)
++
+If either operator does not appear as installed, follow these steps to troubleshoot further:
++
+* On the Copied tab of the `Installed Operators page`, if an operator shows a
+  Status of Copied, this indicates the installation is in process and is
+  expected behavior.
++
+* Switch to the `Catalog` → `Operator Management` page and inspect the `Operator
+  Subscriptions` and `Install Plans` tabs for any failure or errors under Status.
   
 #### Configuring a bucket with AWS
   
@@ -312,45 +292,145 @@ deployer-dockercfg-5kqr7                   kubernetes.io/dockercfg              
 deployer-token-65zmx                       kubernetes.io/service-account-token   4      7m51s
 lokistack-dev-s3                           Opaque                                5      57s
 
-#### Creating the LokiStack
+#### Creating the LokiStack custom resource (CR) 
   
-1. Now, head on over to the `console` and go to `Operators` and `Installed Operators`. 
+1. Now, head on over to the `console` and go to `Administration` and `CustomResourceDefinitions`. 
   
-  a. Select the `Loki Operator`
+  a. Select the `Create CustomResourceDefinition`
   
-  b. On the first page under `Provided APIs` and `LokiStack` select `Create instance`.
-  
-  c. Switch to `YAML view` option
-  
-  d. Next you should remove the current YAML and replace it with this YAML:
+  b. Next you should remove the current YAML and replace it with this YAML:
   
 [source,yaml]
 ----
 apiVersion: loki.grafana.com/v1
 kind: LokiStack
 metadata:
-  name: lokistack-dev
+  name: logging-loki
   namespace: openshift-logging
 spec:
+  managementState: Managed
   size: 1x.extra-small
   storage:
     schemas:
-    - version: v12
-      effectiveDate: "2022-06-01"
+    - effectiveDate: '2024-10-01'
+      version: v13
     secret:
       name: lokistack-dev-s3
       type: s3
-  storageClassName: gp2-csi
+  storageClassName: gp3-csi
   tenants:
     mode: openshift-logging
 ----
 
-This YAML will create a useable `LokiStack`. As you can see within this `YAML` 
-it uses the secret file we created earlier.
+d. Create a service account for the collector:
 
-d. Then click `Create`.
+[source,bash,role="execute"]
+----
+oc create sa collector -n openshift-logging
+----
 
-e. Navigate to the `LokiStack` tab and click on `lokistack-dev`. 
+e. Allow the collector’s service account to write data to the LokiStack CR:
+
+[source,bash,role="execute"]
+----
+oc adm policy add-cluster-role-to-user logging-collector-logs-writer -z collector -n openshift-logging
+----
+
+Allow the collector’s service account to collect logs:
+
+[source,bash,role="execute"]
+----
+oc project openshift-logging
+----
+
+[source,bash,role="execute"]
+----
+oc adm policy add-cluster-role-to-user collect-application-logs -z collector
+----
+
+[source,bash,role="execute"]
+----
+oc adm policy add-cluster-role-to-user collect-audit-logs -z collector
+----
+
+[source,bash,role="execute"]
+----
+oc adm policy add-cluster-role-to-user collect-infrastructure-logs -z collector
+----
+
+Now, head on over to the `console` and go to `Administration` and `CustomResourceDefinitions`. 
+  
+  a. Select the `Create CustomResourceDefinition`
+  
+  b. Create a UIPlugin CR to enable the Log section in the Observe tab. Remove the current YAML and replace it with this YAML:
+  
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1alpha1
+kind: UIPlugin
+metadata:
+  name: logging
+spec:
+  type: Logging
+  logging:
+    lokiStack:
+      name: logging-loki
+----
+
+  c. Click Create.
+
+Now, head on over to the `console` and go to `Administration` and `CustomResourceDefinitions`. 
+  
+  a. Select the `Create CustomResourceDefinition`
+  
+  b. Create a ClusterLogForwarder CR to configure log forwarding. Remove the current YAML and replace it with this YAML:
+  
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: collector
+  namespace: openshift-logging
+spec:
+  serviceAccount:
+    name: collector
+  outputs:
+  - name: default-lokistack
+    type: lokiStack
+    lokiStack:
+      authentication:
+        token:
+          from: serviceAccount
+      target:
+        name: logging-loki
+        namespace: openshift-logging
+    tls:
+      ca:
+        key: service-ca.crt
+        configMapName: openshift-service-ca.crt
+  pipelines:
+  - name: default-logstore
+    inputRefs:
+    - application
+    - infrastructure
+    - audit
+    outputRefs:
+    - default-lokistack
+----
+
+  c. Click Create.
+
+
+
+
+
+
+
+
+
+
+
 
 It may take up to a minute to be up and running but it should eventually look like this:
 
@@ -516,4 +596,87 @@ spec:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To enable metrics service discovery, add the following namespace label
+openshift.io/cluster-monitoring: "true".
+ 
+The namespace is represented in yaml format as:
+
+[source,yaml]
+.openshift_logging_namespace.yaml
+----
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-logging
+  annotations:
+    openshift.io/node-selector: ""
+  labels:
+    openshift.io/cluster-logging: "true"
+    openshift.io/cluster-monitoring: "true"
+----
+So `create` a file with the above YAML called 'openshift_logging_namespace.yaml'
+
+Use that file to create the namespace by running the following command:
+
+[source,bash,role="execute"]
+----
+oc create -f openshift_logging_namespace.yaml
+----
+
+Next, verify that the namespace has been created with this command:
+
+[source,bash,role="execute"]
+----
+oc get ns openshift-logging
+----
+
+You should see the following output:
+
+```
+NAME                STATUS   AGE
+openshift-logging   Active   11s
+```
 
