@@ -424,7 +424,7 @@ spec:
 
 
 
-EOF
+EOF (INCLUDE NOTES FROM https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/logging/logging-6-1#quick-start-viaq_logging-6x-6.1)
 
 
 ----
