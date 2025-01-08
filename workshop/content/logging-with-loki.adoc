@@ -401,6 +401,36 @@ spec:
 
   c. Click Create.
 
+#### Observing The Logs
+
+1. At this Point you can go to `Observe` -> `Logs` on the left hand menu. 
+
+2. Once you are inside you will notice a menu which is currently 
+set to `Applications`. change this instead to `infrastructure`
+
+You should now see all the `logs` for `Infrastructure`. The logs are split 
+into 3 sections: `application`, `infrastructure` and `audits`. We will set 
+up audits and the `log forwarder` in the next part, but lets have a 
+look through the different parts of this.
+
+image::images/appinfraaudit.png[]
+
+As we can see in the graphic below, you can filter by `Content`, `Namespaces`, `Pods`, and `Containers`. 
+This can be useful to narrow down searches when looking for something more specific.
+
+image::images/filterlogs.png[]
+
+You can further specify the logs you are looking for by using the other 
+drop down menu for `Severity`. This menu breaks the logs down into `critical`, 
+`error`, `warning`, `debug`, `info`, `trace`, and `unknown` logging categories.
+
+image::images/severity.png[]
+
+The final piece of this is the `histogram`. This gives the user a more visual look into the logs.
+
+image::images/histogram.png[]
+
+
 
 
 
@@ -509,34 +539,6 @@ this change will now allow you to access logs.
 
 image::images/Loki_refresh.png[]
 
-#### Observing The Logs
-
-1. At this Point you can go to `Observe` -> `Logs` on the left hand menu. 
-
-2. Once you are inside you will notice a menu which is currently 
-set to `Applications`. change this instead to `infrastructure`
-
-You should now see all the `logs` for `Infrastructure`. The logs are split 
-into 3 sections: `application`, `infrastructure` and `audits`. We will set 
-up audits and the `log forwarder` in the next part, but lets have a 
-look through the different parts of this.
-
-image::images/appinfraaudit.png[]
-
-As we can see in the graphic below, you can filter by `Content`, `Namespaces`, `Pods`, and `Containers`. 
-This can be useful to narrow down searches when looking for something more specific.
-
-image::images/filterlogs.png[]
-
-You can further specify the logs you are looking for by using the other 
-drop down menu for `Severity`. This menu breaks the logs down into `critical`, 
-`error`, `warning`, `debug`, `info`, `trace`, and `unknown` logging categories.
-
-image::images/severity.png[]
-
-The final piece of this is the `histogram`. This gives the user a more visual look into the logs.
-
-image::images/histogram.png[]
 
 #### Setting up Log forwarding
 
