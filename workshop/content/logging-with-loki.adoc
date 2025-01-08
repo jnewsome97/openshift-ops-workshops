@@ -97,7 +97,13 @@ namespace was created from the previous steps
   c. On the `Create Operator Subscription` page, select *Update Channel `stable-6.1`*. Leave all other defaults
      and click `Install`.
 
-3. Verify the operator installations:
+3. Install the `Cluster Observability Operator`:
+  a. In the OpenShift console, click `Operators` → `OperatorHub`.
+  b. Type `Cluster Observability Operator` in the search field and click the `Cluster Observability Operator` card from the list of available Operators (In this example we are using '0.4.1'), and then click `Install`.
+  c. On the `Create Operator Subscription` page, select *Update Channel `development`*. Leave all other defaults
+     and click `Install`.
+
+4. Verify the operator installations:
 
   a. Switch to the `Operators` → `Installed Operators` page.
 
@@ -113,7 +119,7 @@ operator then installs with an `InstallSucceeded` message, you can safely
 ignore the `Failed` message.
 ====
 
-4. Troubleshooting (optional/if needed)
+5. Troubleshooting (optional/if needed)
 +
 If either operator does not appear as installed, follow these steps to troubleshoot further:
 +
@@ -127,32 +133,6 @@ If either operator does not appear as installed, follow these steps to troublesh
 * Switch to the `Workloads` → `Pods` page and check the logs in any Pods in the
   `openshift-logging` and `openshift-operators` projects that are reporting issues.
 
-3. Install the `Cluster Observability Operator`:
-  a. In the OpenShift console, click `Operators` → `OperatorHub`.
-  b. Type `Cluster Observability Operator` in the search field and click the `Cluster Observability Operator` card from the list of available Operators (In this example we are using '0.4.1'), and then click `Install`.
-  c. On the `Create Operator Subscription` page, select *Update Channel `development`*. Leave all other defaults
-     and click `Install`.
-
-3. Verify the operator installations: After a while, the screen should display a green checkmark, indicating that the operator has been successfully installed.
-+
-[Note]
-====
-During installation an operator might display a `Failed` status. If the
-operator then installs with an `InstallSucceeded` message, you can safely
-ignore the `Failed` message.
-====
-
-4. Troubleshooting (optional/if needed)
-+
-If either operator does not appear as installed, follow these steps to troubleshoot further:
-+
-* On the Copied tab of the `Installed Operators page`, if an operator shows a
-  Status of Copied, this indicates the installation is in process and is
-  expected behavior.
-+
-* Switch to the `Catalog` → `Operator Management` page and inspect the `Operator
-  Subscriptions` and `Install Plans` tabs for any failure or errors under Status.
-  
 #### Configuring a bucket with AWS
   
      1. You should have received some `AWS credentials`. You can remind yourself of these 
