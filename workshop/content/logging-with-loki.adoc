@@ -49,7 +49,7 @@ Resource.
 IMPORTANT: We have set up an external OpenShift Console with kubeadmin credentials exclusively for this workshop. To access it, please refer to the workshop credentials page. Kindly refrain from using the internal OpenShift Console while logged in with the service account within this dashboard.
 ====
 
-#### Install the `Loki` and  `Cluster Logging` Operators in the cluster
+#### Install the `Loki`,  `Cluster Logging`, and `Cluster Observability` Operators in the cluster
 
 In order to install and configure the logging stack into the cluster,
 additional operators need to be installed. we'll cover below how these can be 
