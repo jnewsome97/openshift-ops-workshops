@@ -107,7 +107,7 @@ namespace was created from the previous steps
 
   a. Switch to the `Operators` → `Installed Operators` page.
 
-  b. Make sure the `openshift-logging` project is selected.
+  b. Make sure the `All Projects` project is selected.
 
   c. In the _Status_ column you should see green checks with either
      `InstallSucceeded` or `Copied` and the text _Up to date_.
