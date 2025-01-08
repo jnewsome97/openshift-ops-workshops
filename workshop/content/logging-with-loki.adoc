@@ -1,7 +1,7 @@
 ## Summary - OpenShift Logging
 In this lab you will explore the logging capabilities of
 OpenShift 4.12. This module will break down all the new logging
-features within 4.12.
+features within 4.16.
 
 An extremely important function of OpenShift is collecting and aggregating
 logs from the environments and the application pods it is running. 
