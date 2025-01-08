@@ -93,7 +93,7 @@ namespace was created from the previous steps
 
 2. Install the `Loki Operator`:
   a. In the OpenShift console, click `Operators` → `OperatorHub`.
-  b. Type `Loki Operator` in the search field and click the `Loki Operator` card from the list of available Operators (In this example we are using '6.1.0'), and then click `Install`.
+  b. Type `Loki Operator` in the search field and click the `Loki Operator` card from the list of available Operators (In this example we are using '6.1.0'). You should also select 'Enable Operator recommended cluster monitoring on this Namespace'.
   c. On the `Create Operator Subscription` page, select *Update Channel `stable-6.1`*. Leave all other defaults
      and click `Install`.
 
